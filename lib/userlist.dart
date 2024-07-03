@@ -17,8 +17,7 @@ class _UserListState extends State<UserList> {
   TextEditingController Email = TextEditingController();
 
   List<UserData> daftarUser = [
-
-  ];
+    ];
 
   String btnSimpanText = "Simpan";
   String btnUbahText = "Ubah";
@@ -77,11 +76,13 @@ class _UserListState extends State<UserList> {
                           Umur.text.isEmpty ||
                           Email.text.isEmpty)
                         throw new Exception("Isian tidak boleh kosong");
-
-                      int umur = int.parse(Umur.text);
+                        
+                       int umur = int.parse(Umur.text);
+                       
 
                       if (btnSimpanText == "Simpan") {
-                          daftarUser.add(UserData(Nama.text, int.parse(Umur.text), Email.text));
+                        for (int umur = 0; umur < int.parse(Umur.text); umur++){
+                          daftarUser.add(UserData(Nama.text, int.parse(Umur.text), Email.text));}
                       } else {
                         UserData userData = daftarUser[indexDipilih];
                         userData.nama = Nama.text;
@@ -117,7 +118,7 @@ class _UserListState extends State<UserList> {
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Dismissible(
+                    return Dismissible(
                         key: ValueKey(daftarUser[index]),
                         child: InkWell(
                           child: UserItem(daftarUser[index]),
